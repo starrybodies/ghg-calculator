@@ -285,7 +285,7 @@ def report(
     )
 
     generator = ReportGenerator()
-    generator.generate(inventory, config, output)
+    generator.generate(inventory, config, output, activities=activities)
     console.print(f"[green]Report generated: {output}[/green]")
 
 
