@@ -1,0 +1,41 @@
+{
+  "name": "ghg-analyze",
+  "display_name": "GHG Emissions Analyzer",
+  "description": "Calculate greenhouse gas emissions for any scenario using GHG Protocol methodology with 967 embedded emission factors across all 3 scopes",
+  "version": "1.0.0",
+  "author": "starrybodies",
+  "license": "MIT",
+  "repository": "https://github.com/starrybodies/ghg-calculator",
+  "categories": ["sustainability", "climate", "carbon", "esg", "reporting", "environment"],
+  "keywords": [
+    "ghg protocol",
+    "carbon footprint",
+    "emissions calculator",
+    "scope 1 2 3",
+    "sustainability",
+    "esg reporting",
+    "climate",
+    "carbon accounting",
+    "emission factors",
+    "corporate standard",
+    "cdp",
+    "gri 305",
+    "net zero"
+  ],
+  "skills": [
+    {
+      "name": "ghg-analyze",
+      "path": ".claude/skills/ghg-analyze/SKILL.md",
+      "description": "Research and calculate GHG emissions for any scenario, industry, or project"
+    }
+  ],
+  "mcp_server": {
+    "command": "uv",
+    "args": ["--directory", ".", "run", "ghg-mcp"],
+    "tools": 8
+  },
+  "requirements": {
+    "python": ">=3.11",
+    "uv": true
+  }
+}
