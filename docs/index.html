@@ -18,11 +18,9 @@
             --green-light: #81C784;
             --green-pale: #A5D6A7;
             --accent-emerald: #00897B;
-            --accent-gold: #C6A700;
             --black: #08080A;
             --charcoal: #141416;
             --surface: #1A1A1E;
-            --surface-light: #222226;
             --gray-mid: #555;
             --gray-light: #888;
             --cream: #F0F0EA;
@@ -45,13 +43,13 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            padding: 16px 32px;
+            z-index: 10;
+            padding: 16px max(32px, env(safe-area-inset-left));
+            padding-right: max(32px, env(safe-area-inset-right));
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(8,8,10,0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(8,8,10,0.95);
             border-bottom: 1px solid rgba(76,175,80,0.08);
         }
         .nav-brand {
@@ -59,7 +57,6 @@
             font-weight: 700;
             font-size: 1rem;
             color: var(--cream);
-            letter-spacing: -0.02em;
         }
         .nav-brand span { color: var(--green-bright); }
         .nav-links {
@@ -71,7 +68,6 @@
             font-size: 0.85rem;
             color: var(--cream-dim);
             text-decoration: none;
-            transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--green-bright); }
         .nav-links .btn-nav {
@@ -81,13 +77,12 @@
             border-radius: 6px;
             font-weight: 600;
             font-size: 0.8rem;
-            transition: background 0.2s;
         }
         .nav-links .btn-nav:hover { background: var(--green-light); }
 
         /* ── Hero ─────────────────────────────── */
         .hero {
-            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -96,19 +91,9 @@
             padding: 120px 24px 80px;
             position: relative;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background:
-                radial-gradient(ellipse at 30% 30%, rgba(76,175,80,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 70%, rgba(0,137,123,0.04) 0%, transparent 50%);
-            pointer-events: none;
-        }
         .hero-eyebrow {
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--green-bright);
             margin-bottom: 20px;
@@ -117,16 +102,13 @@
             font-family: 'Inter', sans-serif;
             font-size: clamp(2.5rem, 7vw, 5rem);
             font-weight: 700;
-            letter-spacing: -0.04em;
             line-height: 1.05;
             max-width: 900px;
             margin-bottom: 24px;
+            text-wrap: balance;
         }
-        .hero h1 .gradient {
-            background: linear-gradient(135deg, var(--green-bright), var(--green-light), var(--accent-emerald));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero h1 .accent {
+            color: var(--green-bright);
         }
         .hero p {
             font-size: 1.15rem;
@@ -134,6 +116,7 @@
             max-width: 600px;
             margin-bottom: 40px;
             line-height: 1.7;
+            text-wrap: pretty;
         }
         .hero-actions {
             display: flex;
@@ -151,7 +134,6 @@
             font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.2s;
             cursor: pointer;
             border: none;
         }
@@ -161,7 +143,6 @@
         }
         .btn-primary:hover {
             background: var(--green-light);
-            transform: translateY(-1px);
         }
         .btn-secondary {
             background: transparent;
@@ -170,7 +151,6 @@
         }
         .btn-secondary:hover {
             border-color: var(--green-bright);
-            background: rgba(76,175,80,0.05);
         }
         .hero-stats {
             display: flex;
@@ -187,11 +167,11 @@
             font-size: 2.2rem;
             font-weight: 700;
             color: var(--green-bright);
+            font-variant-numeric: tabular-nums;
         }
         .stat-label {
             font-size: 0.75rem;
             color: var(--gray-light);
-            letter-spacing: 0.08em;
             text-transform: uppercase;
             margin-top: 4px;
         }
@@ -205,14 +185,15 @@
             font-family: 'Inter', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
             margin-bottom: 16px;
+            text-wrap: balance;
         }
         .install .lead {
             font-size: 1.05rem;
             color: var(--cream-dim);
             max-width: 550px;
             margin: 0 auto 48px;
+            text-wrap: pretty;
         }
         .install-steps {
             display: grid;
@@ -234,6 +215,7 @@
             font-weight: 700;
             color: var(--green-deep);
             margin-bottom: 12px;
+            font-variant-numeric: tabular-nums;
         }
         .step h3 {
             font-size: 1.05rem;
@@ -244,6 +226,7 @@
             font-size: 0.9rem;
             color: var(--cream-dim);
             margin-bottom: 16px;
+            text-wrap: pretty;
         }
         .code-block {
             background: var(--charcoal);
@@ -263,15 +246,15 @@
         /* ── Skill Section ────────────────────── */
         .skill {
             padding: 100px 24px;
-            background: linear-gradient(180deg, transparent, rgba(13,31,13,0.3), transparent);
+            background: var(--charcoal);
         }
         .skill h2 {
             font-family: 'Inter', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
             text-align: center;
             margin-bottom: 16px;
+            text-wrap: balance;
         }
         .skill .lead {
             font-size: 1.05rem;
@@ -279,6 +262,7 @@
             max-width: 550px;
             margin: 0 auto 48px;
             text-align: center;
+            text-wrap: pretty;
         }
         .skill-demo {
             max-width: 720px;
@@ -290,10 +274,6 @@
             border-radius: 12px;
             padding: 24px 28px;
             margin-bottom: 16px;
-            transition: border-color 0.2s;
-        }
-        .skill-prompt:hover {
-            border-color: rgba(76,175,80,0.35);
         }
         .skill-prompt .cmd-line {
             font-family: 'JetBrains Mono', monospace;
@@ -312,6 +292,7 @@
             font-size: 0.8rem;
             color: var(--gray-light);
             margin-top: 8px;
+            text-wrap: pretty;
         }
 
         /* ── Features ─────────────────────────── */
@@ -322,9 +303,9 @@
             font-family: 'Inter', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
             text-align: center;
             margin-bottom: 56px;
+            text-wrap: balance;
         }
         .features-grid {
             display: grid;
@@ -338,11 +319,6 @@
             border: 1px solid rgba(76,175,80,0.08);
             border-radius: 12px;
             padding: 28px 24px;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-        .feature:hover {
-            border-color: rgba(76,175,80,0.25);
-            transform: translateY(-2px);
         }
         .feature-icon {
             font-size: 1.6rem;
@@ -357,20 +333,21 @@
             font-size: 0.88rem;
             color: var(--cream-dim);
             line-height: 1.6;
+            text-wrap: pretty;
         }
 
         /* ── Databases ────────────────────────── */
         .databases {
             padding: 80px 24px;
-            background: linear-gradient(180deg, transparent, rgba(13,31,13,0.2), transparent);
+            background: var(--charcoal);
         }
         .databases h2 {
             font-family: 'Inter', sans-serif;
             font-size: clamp(1.5rem, 3vw, 2rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
             text-align: center;
             margin-bottom: 40px;
+            text-wrap: balance;
         }
         .db-grid {
             display: grid;
@@ -391,6 +368,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--green-bright);
+            font-variant-numeric: tabular-nums;
         }
         .db-name {
             font-size: 0.82rem;
@@ -412,14 +390,15 @@
             font-family: 'Inter', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.8rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
             margin-bottom: 16px;
+            text-wrap: balance;
         }
         .cta p {
             font-size: 1rem;
             color: var(--cream-dim);
             max-width: 500px;
             margin: 0 auto 36px;
+            text-wrap: pretty;
         }
         .cta-code {
             max-width: 560px;
@@ -429,6 +408,7 @@
         /* ── Footer ───────────────────────────── */
         footer {
             padding: 48px 24px 40px;
+            padding-bottom: max(40px, env(safe-area-inset-bottom));
             border-top: 1px solid rgba(76,175,80,0.08);
             text-align: center;
         }
@@ -443,7 +423,6 @@
             font-size: 0.85rem;
             color: var(--cream-dim);
             text-decoration: none;
-            transition: color 0.2s;
         }
         .footer-links a:hover { color: var(--green-bright); }
         .footer-built {
@@ -459,7 +438,7 @@
 
         /* ── Responsive ───────────────────────── */
         @media (max-width: 640px) {
-            nav { padding: 12px 16px; }
+            nav { padding: 12px max(16px, env(safe-area-inset-left)); }
             .nav-links { gap: 16px; }
             .hero { padding: 100px 16px 60px; }
             .hero-stats { gap: 32px; }
@@ -483,7 +462,7 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-eyebrow">Open Source &bull; 967 Factors &bull; Zero API Costs</div>
-        <h1>Carbon intelligence<br>for <span class="gradient">every scope</span></h1>
+        <h1>Carbon intelligence<br>for <span class="accent">every scope</span></h1>
         <p>Calculate greenhouse gas emissions across Scope 1, 2, and 3 with 967 embedded emission factors from 6 peer-reviewed databases. CLI, MCP server, and Claude Code skill.</p>
         <div class="hero-actions">
             <a href="#install" class="btn btn-primary">Get Started</a>
@@ -537,7 +516,7 @@
                     <span class="cmd">&nbsp;&nbsp;--fuel natural_gas \</span><br>
                     <span class="cmd">&nbsp;&nbsp;--quantity 1000 --unit therm</span><br>
                     <br>
-                    <span class="comment"># → 5,307 kg CO2e (5.3 tCO2e)</span>
+                    <span class="comment"># &rarr; 5,307 kg CO2e (5.3 tCO2e)</span>
                 </div>
             </div>
             <div class="step">
@@ -594,7 +573,7 @@
             <div class="feature">
                 <div class="feature-icon">&#9670;</div>
                 <h3>Interactive Reports</h3>
-                <p>Geographic maps, scope donuts, waterfall charts, treemaps, top sources — dark green/black theme with Plotly.</p>
+                <p>Geographic maps, scope donuts, waterfall charts, treemaps, top sources — dark theme with Plotly.</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">&#8862;</div>
