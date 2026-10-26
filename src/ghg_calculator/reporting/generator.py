@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 from jinja2 import Template
+from plotly.offline import get_plotlyjs_version
 
 from ..models.activity import ActivityRecord
 from ..models.report import ReportConfig, ReportFormat
@@ -19,7 +20,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-{{ plotlyjs_version }}.min.js"></script>
     <style>
         :root {
             --green-dark: #0D1F0D;
@@ -713,6 +714,7 @@ class ReportGenerator:
 
         html = template.render(
             title=config.title,
+            plotlyjs_version=get_plotlyjs_version(),
             year=inventory.year,
             total_tonnes=inventory.total_co2e_tonnes,
             scope1_tonnes=inventory.scope1.total_co2e_tonnes,

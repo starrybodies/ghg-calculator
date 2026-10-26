@@ -5,15 +5,15 @@ description = "GHG Protocol Corporate Standard emissions calculator with CLI and
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "pydantic>=2.0",
-    "pint>=0.24",
-    "pandas>=2.0",
-    "plotly>=5.18",
-    "typer>=0.12",
-    "rich>=13.0",
-    "fastmcp>=2.0",
-    "jinja2>=3.1",
-    "kaleido>=0.2",
+    "pydantic>=2.14",
+    "pint>=0.25",
+    "pandas>=3.0",
+    "plotly>=7.1",
+    "typer>=0.27",
+    "rich>=15.0",
+    "fastmcp>=4.1",
+    "jinja2>=3.1.6",
+    "kaleido>=1.5",
 ]
 
 [project.scripts]
@@ -34,15 +34,18 @@ asyncio_mode = "auto"
 [tool.ruff]
 line-length = 100
 
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
 [tool.mypy]
 strict = true
 plugins = ["pydantic.mypy"]
 
 [dependency-groups]
 dev = [
-    "pytest>=8.0",
-    "pytest-asyncio",
-    "pytest-cov",
-    "ruff",
-    "mypy",
+    "pytest>=9.1",
+    "pytest-asyncio>=1.4",
+    "pytest-cov>=7.1",
+    "ruff>=0.17",
+    "mypy>=2.4",
 ]
